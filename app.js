@@ -1,10 +1,16 @@
+/* eslint-disable new-cap */
 const envVar = require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const cors = require('cors')
+const cors = require('cors');
+
+// Set a system-wide knex instance
+const { Model } = require('objection');
+const dbConfig = require('./knexfile');
+Model.knex(require('knex')(dbConfig.development));
 
 const log = require('./utils/logger');
 
