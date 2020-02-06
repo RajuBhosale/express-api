@@ -10,7 +10,7 @@ exports.up = function(knex) {
         table.timestamp('emailConfirmedAt');
         table.string('analyticsId', 255).defaultTo(uniqid());
         table.timestamp('createdAt', { useTz: true }).defaultTo(knex.fn.now());
-        table.timestamp('UpdatedAt', { useTz: true }).defaultTo(knex.fn.now());
+        table.timestamp('updatedAt', { useTz: true }).defaultTo(knex.fn.now());
       });
 };
 

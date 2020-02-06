@@ -1,5 +1,5 @@
 /* eslint-disable new-cap */
-const envVar = require('dotenv').config();
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -12,14 +12,9 @@ const { Model } = require('objection');
 const dbConfig = require('./knexfile');
 Model.knex(require('knex')(dbConfig.development));
 
-const log = require('./utils/logger');
-
-const indexRouter = require('./routes/index');
+// set routes
+const indexRouter = require('./routes');
 const usersRouter = require('./routes/users');
-
-if (envVar) {
-  log.info('Environment config loaded');
-}
 
 const app = express();
 
