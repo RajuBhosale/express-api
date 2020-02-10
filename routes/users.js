@@ -10,7 +10,7 @@ router.get('/', async function(req, res, next) {
     const result = await userService.get(req.query.email);
     res.send(result);
   } catch (error) {
-    res.sendStatus(500).send(error.message);
+    return next(error);
   }
 });
 
