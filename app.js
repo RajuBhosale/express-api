@@ -15,7 +15,7 @@ Model.knex(require('knex')(dbConfig.development));
 
 // set routes
 const indexRouter = require('./routes');
-const usersRouter = require('./routes/users');
+const usersRouter = require('./features/users/routes');
 
 const app = express();
 
