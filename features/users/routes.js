@@ -22,18 +22,20 @@ router.get('/',
       }
     });
 
-router.post('/', checkSchema(createUserSchema), async function(req, res, next) {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
-  try {
-    const { email } = req.body;
-    const result = await userService.create({ email });
-    res.send(result);
-  } catch (error) {
-    return next(error);
-  }
-});
+router.post('/',
+    checkSchema(createUserSchema),
+    async function(req, res, next) {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+      }
+      try {
+        const { email } = req.body;
+        const result = await userService.create({ email });
+        res.send(result);
+      } catch (error) {
+        return next(error);
+      }
+    });
 
 module.exports = router;
