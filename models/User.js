@@ -1,4 +1,5 @@
 /* eslint-disable require-jsdoc */
+const uniqid = require('uniqid');
 const { Model } = require('objection');
 
 class User extends Model {
@@ -23,6 +24,14 @@ class User extends Model {
         analyticsId: { type: 'string' },
       },
     };
+  }
+  async $beforeInsert(queryContext) {
+    await super.$beforeInsert(queryContext);
+    this.analyticsId = uniqid();
+  }
+  async $beforeUpdate(opt, queryContext) {
+    await super.$beforeUpdate(opt, queryContext);
+    this.updatedAt = new Date();
   }
 }
 

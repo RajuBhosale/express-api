@@ -8,7 +8,7 @@ exports.up = function(knex) {
         table.string('email', 255).notNullable().unique();
         table.enu('role', ['admin', 'user']).defaultTo('user');
         table.timestamp('emailConfirmedAt');
-        table.string('analyticsId', 255).defaultTo(() => uniqid());
+        table.string('analyticsId', 255);
         table.timestamp('createdAt', { useTz: true }).defaultTo(knex.fn.now());
         table.timestamp('updatedAt', { useTz: true }).defaultTo(knex.fn.now());
       });
